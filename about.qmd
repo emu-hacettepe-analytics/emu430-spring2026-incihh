@@ -17,10 +17,8 @@ sidebar: false
 
 # Projects
 
-1.  Maintenance Planning for Electric Trains of
-    Turkish State Railways (TCDD)
-2.  Estimation
-    of Powder Painting Consumption for Mitaş Painting factory
+1.  Maintenance Planning for Electric Trains of Turkish State Railways (TCDD)
+2.  Estimation of Powder Painting Consumption for Mitaş Painting factory
 
 # Competencies
 
@@ -29,3 +27,5 @@ R, Quarto, Git, Python
 # Hobbies
 
 1.  Piano, Music
+
+\[Özgeçmişimi indirmek için buraya tıklayın\](meral_inci_yuzgulec.pdf)
