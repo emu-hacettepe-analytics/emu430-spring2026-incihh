@@ -5,26 +5,27 @@ sidebar: false
 
 # Education
 
--   B.S., Industrial Engineering, Hacettepe University, Turkey, 20xx - ongoing.
+-   B.S., Industrial Engineering, Hacettepe University, Turkey, 2021 - ongoing.
 
 # Work Experience
 
-## Employements
-
-1.  Firm xxx, position xx, year xxx
-
-2.  Firm yyy, position yyy, year yyy
-
 ## Internships
 
-1.  Firm aaa, position xx, year xxx
+1.  Firm Key Yazılım, position Project Management Intern, year 2025
 
-2.  Firm bbb, position yyy, year yyy
+2.  Firm EMAIR Aviation, position Quality Management Intern, year 2024
 
 # Projects
+
+1.  Maintenance Planning for Electric Trains of
+    Turkish State Railways (TCDD)
+2.  Estimation
+    of Powder Painting Consumption for Mitaş Painting factory
 
 # Competencies
 
 R, Quarto, Git, Python
 
 # Hobbies
+
+1.  Piano, Music
