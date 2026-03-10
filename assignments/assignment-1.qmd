@@ -5,11 +5,92 @@ title: "Assignment 1"
 # Assignment 1
 
 ```{r}
-1 + 1
+library(dslabs)
+data("polls_us_election_2016")
+my_first <- "İnci"
+my_birth_year <- 2001
+
+k <- (nchar(my_first) + my_birth_year) %% 15+8 
+
+if (k %% 2 == 0 ) {
+  print(head(polls_us_election_2016, k))
+} else {
+  print(tail(polls_us_election_2016, k))
+}
+
+total_na_original <- sum(is.na(polls_us_election_2016))
+print(paste("Toplam NA sayısı", total_na_original))
+
+
+na_per_column <- colSums(is.na(polls_us_election_2016))
+sorted_na <- sort(na_per_column, decreasing =TRUE)
+print(head(sorted_na, 8))
+
+
+
+new_data <- polls_us_election_2016
+
+num_fill <- my_birth_year + k 
+
+char_fill <- paste0(my_first, "_", k) 
+
+
+for(col in names(new_data)) {
+  # Eğer sütun sayısal ise (integer veya numeric)
+  if(is.numeric(new_data[[col]])) {
+    new_data[[col]][is.na(new_data[[col]])] <- num_fill
+    
+  } 
+  # Eğer sütun Tarih ise (Hata buradaydı, tarihleri atlamalıyız veya uygun formatta doldurmalıyız)
+  else if(inherits(new_data[[col]], "Date")) {
+    # Tarih boşluklarını doldurmak istemiyorsan pass geçebilirsin:
+    # next 
+    # Veya sabit bir tarihle doldurabilirsin:
+    new_data[[col]][is.na(new_data[[col]])] <- as.Date("2026-03-10")
+    
+  } 
+  # Eğer sütun karakter veya factor ise
+  else {
+    # Factor sütunlarda yeni bir seviye eklemeden atama yapmak bazen hata verebilir, 
+    # bu yüzden karakter tipine çevirmek güvenlidir.
+    new_data[[col]] <- as.character(new_data[[col]])
+    new_data[[col]][is.na(new_data[[col]])] <- char_fill
+  }
+}
 ```
 
 My first assignment has two parts.
 
 ## (a)
 
+Veri bilimi gerçek hayatta sağlık, perakende, ulaşım gibi alanlarda kullanılır. Sağlıkta gelecekteki hasta sayısını ve salgınları tahmin etmede, perakendede depolama alanını optimize etmede, ulaşımda ise otonom sürüş yapan araçların sensör verilerini gerçek zamanlı olarak analiz etme gibi alanlarda kullanılır.
+
+Veri biliminin ölçeklendirilebilir sistemler oluşturmak ve gerçek dünya senaryolarını veri analiziyle modellemek gibi işlevleri vardır.
+
+Veri bilimi eleştirel düşünebilme üzerinedir ve insanın muhakeme yeteneğine ihtiyaç duyar. İstatistik ve programlamayı birleştirir.
+
+Veri biliminin iş akışı:
+
+1.  Problem tanımı ve formülasyonu: Bu aşamada hangi sorunu çözmeye çalışıyoruz ve neyi hedefliyoruz gibi soruları yanıtlarız. Problemi iyi tanımlamak çözümü için elzemdir.
+
+2.  Veri toplama: Topladığımız verinin çokluğu kadar kalitesi de önemlidir. Ayrıca veri topladığımız kaynakların çeşitliliği de modelimizin kalitesini arttıracaktır.
+
+3.  Açıklamacı Veri analizi: Bu aşamada topladığımız verilerden ve oluşturduğumuz problem tanımından yola çıkarak verideki örüntüler ve trendler araştırılır. Bunlar mantık çerçevesine oturtulur. Bu aşama modeli oluşturmak için önemlidir. Summary statistics, Görselleştirme ve hipotez testi gibi araçlardan yararlanılır.
+
+4.  Model oluşturma: Bu aşamaya kadar topladığımız verilerden yola çıkarak model oluştururuz. Veri bilimi prescriptive yani çözüm odaklı bir analiz yoludur. Decriptive analysis ve predictive analizden farklı olarak hem verilere hem de çözüme odaklı bir branştır.
+
+5.  Değerlendirme: Modelin işe yarayıp yaramadığının değerlendirildiği aşamadır. Modelimizin dengeli olmasını isteriz; fazla basit(under fitting), ya da çok komplike(overfitting) olmasını tercih etmeyiz.
+
+6.  Üretim ve kullanım aşaması: Bu aşama modelimizin artık gerekli aşamalardan geçtiği ve otomatikleştiği kısımdır. Kullanım aşamasıdır.
+
 ## (b)
+
+Survivorship Bias bize ne öğretir?
+
+Hangi çözüm prescriptive analysis odaklı bir çözümdür?
+
+a\) Çalışanların yaş ve eğitim durumu verilerini kullanarak gelecekte işe alınacak kişilerin maaşlarını belirlemede kullanılacak bir tahmin öodeli geliştrimek.
+
+b\) Bir RPG oyununun verdiği hata sayısı ve bilgisayar modelini veri tabanına kaydetmek.
+
+c\) Bir tesisin makinelerinin yerleşiminin simülasyonunu oluşturarak gelecek 3 ay içerisinde kaç adet ürün üreteceğini bulmak.
