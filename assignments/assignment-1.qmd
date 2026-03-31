@@ -36,23 +36,18 @@ char_fill <- paste0(my_first, "_", k)
 
 
 for(col in names(new_data)) {
-  # Eğer sütun sayısal ise (integer veya numeric)
   if(is.numeric(new_data[[col]])) {
     new_data[[col]][is.na(new_data[[col]])] <- num_fill
     
   } 
-  # Eğer sütun Tarih ise (Hata buradaydı, tarihleri atlamalıyız veya uygun formatta doldurmalıyız)
+  
   else if(inherits(new_data[[col]], "Date")) {
-    # Tarih boşluklarını doldurmak istemiyorsan pass geçebilirsin:
-    # next 
-    # Veya sabit bir tarihle doldurabilirsin:
     new_data[[col]][is.na(new_data[[col]])] <- as.Date("2026-03-10")
     
   } 
-  # Eğer sütun karakter veya factor ise
+  
   else {
-    # Factor sütunlarda yeni bir seviye eklemeden atama yapmak bazen hata verebilir, 
-    # bu yüzden karakter tipine çevirmek güvenlidir.
+    
     new_data[[col]] <- as.character(new_data[[col]])
     new_data[[col]][is.na(new_data[[col]])] <- char_fill
   }
